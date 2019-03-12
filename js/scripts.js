@@ -48,7 +48,6 @@ function addCard(imgsrc, title, description, link) {
 
 
 
-
 };
 
 
