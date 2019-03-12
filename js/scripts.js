@@ -20,6 +20,30 @@ app.appendChild(container);
 
 
 function addCard(imgsrc, title, description, link) {
+    
+    
+    // ES6 way of addign card
+
+
+    let template = `<hr class="featurette-divider">
+
+    <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">${title}</h2>
+      <p class="lead">${description}</p>
+      <a class="metlink" href=${link}>Read on The Met</a>
+    </div>
+    <div class="col-md-5">
+      <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto img-limit" src=${imgsrc} preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Photo"></img>
+    </div>
+  </div>`
+
+  container.innerHTML += template;
+
+
+    
+    /* ES5 way of adding Card below
+
     // create card elements
     cardContainer = document.createElement('container')
     img = document.createElement('img');
@@ -43,10 +67,7 @@ function addCard(imgsrc, title, description, link) {
     cardContainer.appendChild(img);
     cardContainer.appendChild(h1);
     cardContainer.appendChild(p);
-    cardContainer.appendChild(button);
-
-
-
+    cardContainer.appendChild(button); */
 
 };
 
