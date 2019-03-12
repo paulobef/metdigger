@@ -1,0 +1,47 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+
+body {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #5a5a5a;
+  }
+
+  h2 {
+    font-family: 'EB Garamond', serif;
+  }
+
+  p {
+    font-family: 'Lato', sans-serif;
+
+  }
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+  }
+  
+  /* Thin out the marketing headings */
+  .featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+  }
+
+/* RESPONSIVE DESIGN
+
+------------------------- */
+
+  @media (min-width: 40em) {
+    .featurette-heading {
+        font-size: 50px;
+      }
+    }
+    
+    @media (min-width: 62em) {
+      .featurette-heading {
+        margin-top: 7rem;
+      }
+    }
