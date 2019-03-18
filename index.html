@@ -19,9 +19,15 @@
 
 
 <body>
-  <img src="image/logo.jpg"/>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img id="logo" src="image/logo.png"/>
+            <span id="logo-word">Digger</span>        
+          </a>
+      </nav>
 
-  <div class="container">
+
+  <div class="container search-container"><!--- searchbar container-->
     <div class="row">
       <div class="col-md-12">
               <div class="input-group" id="adv-search">
@@ -50,11 +56,11 @@
                                       <label for="contain">Contains the words</label>
                                       <input class="form-control" type="text" />
                                     </div>
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Filter</button>
                                   </form>
                               </div>
                           </div>
-                          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                          <button id="searchbutton" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
                       </div>
                   </div>
               </div>
@@ -70,8 +76,9 @@
 
 
 </div><!-- /.container -->
-
-
+<div class="container">
+  <button id="morebutton" type="button" class="btn btn-primary">More</button>
+</div>
   <script src="js/scripts.js"></script>
 
   <!-- Optional JavaScript -->
