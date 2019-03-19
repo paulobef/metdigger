@@ -149,6 +149,9 @@ function main(start, stop) {
 
             };
 
+            if (morebutton.classList.contains('hidden')) {
+                morebutton.classList.remove('hidden');
+            }
 
         } else {
         
@@ -156,30 +159,36 @@ function main(start, stop) {
             errorMessage.textContent = `Couldn't fetch data`;
             app.appendChild(errorMessage);
         }
+    
+        
     };
 
     request.send();
+    
+    
 
 } // END MAIN
 
-// Loads 10 artworks
 
-searchbar.addEventListener('keypress', function(e){
-
-    if (e.keyCode == 13) {
+    searchbar.addEventListener('keypress', function(e){
+    
+        if (e.keyCode == 13) {
+            morebutton.classList.add('hidden');
+            container.innerHTML = '';
+            main(0, 10);
+        }
+    
+    });
+    
+    searchbutton.addEventListener('click', function() {
+        morebutton.classList.add('hidden');
         container.innerHTML = '';
         main(0, 10);
-    
-    }
-
-});
+    });
 
 
-searchbutton.addEventListener('click', function() {
-    container.innerHTML = '';
-    main(0, 10);
 
-});
+
 
 
 // Load 10 more artworks from the same query
@@ -190,4 +199,22 @@ morebutton.addEventListener('click', function(){
     x += 10;
     main(x, x+10);
 })
+
+
+
+/* to build the favorite engine
+
+1/ add a button on each artwork card
+2/ add event listener on each button
+3a/ use event target siblings to select artwork informations
+3b/ store it in an object
+4/ store the object in local storage
+5a/ retrieve local storage data
+5b/ append a favorite card elsewhere using data stored
+    
+
+
+
+
+*/
 

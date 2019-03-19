@@ -29,6 +29,10 @@ body {
     
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .search-container {
   margin-top: 10em;
 }
