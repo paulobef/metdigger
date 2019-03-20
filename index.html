@@ -19,66 +19,80 @@
 
 
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-            <img id="logo" src="image/logo.png"/>
-            <span id="logo-word">Digger</span>        
-          </a>
-      </nav>
+  <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+          <img id="logo" src="image/logo.png"/>
+          <span id="logo-word">digger</span>        
+      </a>
+  </nav>
 
 
-  <div class="container search-container"><!--- searchbar container-->
-    <div class="row">
-      <div class="col-md-12">
-              <div class="input-group" id="adv-search">
-                  <input id=searchbar type="text" class="form-control" placeholder="Search for art" />
-                  <div class="input-group-btn">
-                      <div class="btn-group" role="group">
-                          <div class="dropdown dropdown-lg">
-                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                              <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                  <form class="form-horizontal" role="form">
-                                    <div class="form-group">
-                                      <label for="filter">Filter by</label>
-                                      <select class="form-control">
-                                          <option value="0" selected>All Snippets</option>
-                                          <option value="1">Featured</option>
-                                          <option value="2">Most popular</option>
-                                          <option value="3">Top rated</option>
-                                          <option value="4">Most commented</option>
-                                      </select>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="contain">Author</label>
-                                      <input class="form-control" type="text" />
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="contain">Contains the words</label>
-                                      <input class="form-control" type="text" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Filter</button>
-                                  </form>
+
+     
+      <div class="container search-container"><!--- searchbar container-->
+        <div class="row">
+          <div class="col-md-12">
+                  <div class="input-group" id="adv-search">
+                      <input id=searchbar type="text" class="form-control" placeholder="Search for art" />
+                      <div class="input-group-btn">
+                          <div class="btn-group" role="group">
+                              <div class="dropdown dropdown-lg">
+                                  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                  <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                      <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                          <label for="filter">Filter by</label>
+                                          <select class="form-control">
+                                              <option value="0" selected>All Snippets</option>
+                                              <option value="1">Featured</option>
+                                              <option value="2">Most popular</option>
+                                              <option value="3">Top rated</option>
+                                              <option value="4">Most commented</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="contain">Author</label>
+                                          <input class="form-control" type="text" />
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="contain">Contains the words</label>
+                                          <input class="form-control" type="text" />
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Filter</button>
+                                      </form>
+                                  </div>
                               </div>
+                              <button id="searchbutton" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
                           </div>
-                          <button id="searchbutton" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>Search</button>
                       </div>
                   </div>
+                </div>
               </div>
-            </div>
-          </div>
+        </div>
+      </div>
+
+
+      <div id="root" class="main-container">
+        <!--This where all THE MET searchAPI calls happen -->
+      </div>
+      
+
+      
+    </div><!-- /.container -->
+    <div class="container">
+      <button id="morebutton" type="button" class="btn btn-primary hidden">More</button>
     </div>
+
+    
+    <div id=favorite-list class="main-container">
+      <!---This is where we will retrieve favorite artworks from localStorage-->
+    </div>
+
+
   </div>
 
-
-  <div id="root" class="main-container"></div>
-
-  
-
-
-</div><!-- /.container -->
-<div class="container">
-  <button id="morebutton" type="button" class="btn btn-primary hidden">More</button>
 </div>
+
   <script src="js/scripts.js"></script>
 
   <!-- Optional JavaScript -->

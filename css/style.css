@@ -40,6 +40,10 @@ body {
 
 /* Featurettes
 ------------------------- */
+.featurette-image {
+  margin-top: 2em;
+}
+
 
 .featurette-divider {
     margin: 5rem 0; /* Space out the Bootstrap <hr> more */
@@ -59,6 +63,9 @@ body {
 	display: block;
   }
 
+  .favorite {
+    margin-top: 1em;
+  }
 /* RESPONSIVE DESIGN
 
 ------------------------- */

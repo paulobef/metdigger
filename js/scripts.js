@@ -15,25 +15,52 @@ app.appendChild(container);
 function main(start, stop) {
 
     const input = searchbar.value;
-
-    function addCard(imgsrc, title, description, link) {
+    
+    
+    function addCard(imgsrc, title, description, link, objctindex) {
         
         // ES6 way of adding card
 
-        let template = `<hr class="featurette-divider">
+    // Construct card
+    let template = `<hr class="featurette-divider">
 
         <div class="row featurette">
         <div class="col-md-7">
         <h2 class="featurette-heading">${title}</h2>
         <p class="lead">${description}</p>
-        <a class="metlink" href=${link}>Read on The Met</a>
+        <a class="metlink" href=${link}>Read on The Met</a><br>
+        <button id=${objctindex} class="btn btn-secondary favorite">Add to favorite</button>
         </div>
         <div class="col-md-5">
         <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto img-limit" src=${imgsrc} preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Photo"></img>
         </div>
     </div>`
 
+    // Render cards
     container.innerHTML += template;
+    
+
+    // Add favorite button feature
+    document.querySelectorAll('.favorite').forEach(function (item) {
+        item.addEventListener('click', function() {
+
+            const ID = this.id;
+
+            const objectreq = new XMLHttpRequest();
+        
+            // Open a new connection, using the GET request on the URL endpoint
+            objectreq.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + ID, true);
+            objectreq.onload = function () {
+                    
+                const data = JSON.parse(this.response);
+
+                let favoriteArtworks = [];
+                favoriteArtworks.push(data);
+                localStorage.setItem('favoriteArtworks', JSON.stringify(favoriteArtworks));
+                }
+            objectreq.send();
+        })
+      });   
 
 
         
@@ -86,13 +113,13 @@ function main(start, stop) {
         
         for (let i = start; i <= stop; i++){
             let index = data.objectIDs[i];
-
+            index = index.toString();
             // OBJECT REQUEST : getting the artwork for a specific ID
 
             const objectrequest = new XMLHttpRequest();
 
                 // Open a new connection, using the GET request on the URL endpoint
-                objectrequest.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + index.toString(), true);
+                objectrequest.open('GET', 'https://collectionapi.metmuseum.org/public/collection/v1/objects/' + index, true);
 
                 objectrequest.onload = function () {
 
@@ -101,7 +128,7 @@ function main(start, stop) {
                     
                 if (objectrequest.status >= 200 && objectrequest.status < 400) {
                   
-                    addCard(object.primaryImageSmall, object.title, object.artistDisplayName, object.objectURL);
+                    addCard(object.primaryImageSmall, object.title, object.artistDisplayName, object.objectURL, index);
         
 
                     } else {
@@ -165,7 +192,7 @@ function main(start, stop) {
 
     request.send();
     
-    
+
 
 } // END MAIN
 
@@ -188,9 +215,6 @@ function main(start, stop) {
 
 
 
-
-
-
 // Load 10 more artworks from the same query
 
 let x = 0;
@@ -201,20 +225,35 @@ morebutton.addEventListener('click', function(){
 })
 
 
-
-/* to build the favorite engine
-
-1/ add a button on each artwork card
-2/ add event listener on each button
-3a/ use event target siblings to select artwork informations
-3b/ store it in an object
-4/ store the object in local storage
-5a/ retrieve local storage data
-5b/ append a favorite card elsewhere using data stored
-    
+/* ----------------------------------------------------------------------
+-------------------------DISPLAY FAVORITES-------------------------------
+----------------------------------------------------------------------- */
+const favoriteList = document.getElementById('favorite-list');
 
 
+function addFavorite(imgsrc, title, description, link) {
+        
+// this a ES6 way of adding card
 
+// Construct card
+let template = `<hr class="featurette-divider">
 
-*/
+    <div class="row featurette">
+    <div class="col-md-7">
+    <h2 class="featurette-heading">${title}</h2>
+    <p class="lead">${description}</p>
+    <a class="metlink" href=${link}>Read on The Met</a>
+    </div>
+    <div class="col-md-5">
+    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto img-limit" src=${imgsrc} preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Photo"></img>
+    </div>
+</div>`
+
+// Render cards
+favoriteList.innerHTML += template;
+}
+
+let storedFavorite = JSON.parse(localStorage.getItem('favoriteArtworks'))
+
+storedFavorite.forEach(addFavorite(this.primaryImageSmall, this.title, this.artistDisplayName, this.objectURL));
 
