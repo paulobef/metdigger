@@ -6,7 +6,7 @@ const searchbutton = document.getElementById('searchbutton');
 const morebutton = document.getElementById('morebutton');
 const app = document.getElementById('root');
 
-
+let favoriteArtworks = [];
 // Create a container
 const container = document.createElement('div');
 container.setAttribute('class', 'container');
@@ -53,8 +53,7 @@ function main(start, stop) {
             objectreq.onload = function () {
                     
                 const data = JSON.parse(this.response);
-
-                let favoriteArtworks = [];
+                
                 favoriteArtworks.push(data);
                 localStorage.setItem('favoriteArtworks', JSON.stringify(favoriteArtworks));
                 }
@@ -228,32 +227,39 @@ morebutton.addEventListener('click', function(){
 /* ----------------------------------------------------------------------
 -------------------------DISPLAY FAVORITES-------------------------------
 ----------------------------------------------------------------------- */
-const favoriteList = document.getElementById('favorite-list');
+const showFavButton = document.getElementById('show-fav');
 
+showFavButton.addEventListener('click', function () {
+ 
+    const favoriteList = document.getElementById('favorite-list');
+    function addFavorite(imgsrc, title, description, link) {
 
-function addFavorite(imgsrc, title, description, link) {
+    // this a ES6 way of adding card
         
-// this a ES6 way of adding card
+    // Construct card
+    let template = `<hr class="featurette-divider">
 
-// Construct card
-let template = `<hr class="featurette-divider">
+        <div class="row featurette">
+        <div class="col-md-7">
+        <h2 class="featurette-heading">${title}</h2>
+        <p class="lead">${description}</p>
+        <a class="metlink" href=${link}>Read on The Met</a>
+        </div>
+        <div class="col-md-5">
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto img-limit" src=${imgsrc} preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Photo"></img>
+        </div>
+    </div>`
 
-    <div class="row featurette">
-    <div class="col-md-7">
-    <h2 class="featurette-heading">${title}</h2>
-    <p class="lead">${description}</p>
-    <a class="metlink" href=${link}>Read on The Met</a>
-    </div>
-    <div class="col-md-5">
-    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto img-limit" src=${imgsrc} preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Photo"></img>
-    </div>
-</div>`
+    // Render cards
+    favoriteList.innerHTML += template;
 
-// Render cards
-favoriteList.innerHTML += template;
-}
+    }
 
-let storedFavorite = JSON.parse(localStorage.getItem('favoriteArtworks'))
-
-storedFavorite.forEach(addFavorite(this.primaryImageSmall, this.title, this.artistDisplayName, this.objectURL));
-
+    let storedFavorite = JSON.parse(localStorage.getItem('favoriteArtworks'))
+    favoriteList.innerHTML = "";
+    
+    for (let k = 0; k <= storedFavorite.length + 1; k++) {
+        
+        addFavorite(storedFavorite[k].primaryImageSmall, storedFavorite[k].title, storedFavorite[k].artistDisplayName, storedFavorite[k].objectURL);
+    }
+});
